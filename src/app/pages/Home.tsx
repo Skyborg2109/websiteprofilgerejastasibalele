@@ -9,6 +9,8 @@ import { useSiteContent } from "../context/SiteContentContext";
 export function Home() {
   const { content } = useSiteContent();
   const { hero, welcome, announcements, homeSchedules } = content;
+  // Filter hanya item yang memiliki data lengkap
+  const validSchedules = homeSchedules.filter(s => s.day?.trim() || s.time?.trim() || s.type?.trim());
 
   return (
     <div>
@@ -85,8 +87,8 @@ export function Home() {
         </div>
       </section>
 
-      {/* Quick Schedule — hanya tampil jika ada data */}
-      {homeSchedules.length > 0 && (
+      {/* Quick Schedule — hanya tampil jika ada data valid */}
+      {validSchedules.length > 0 && (
         <section className="py-16 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
@@ -94,12 +96,12 @@ export function Home() {
               <p className="text-gray-600">Jadwal ibadah reguler mingguan</p>
             </div>
 
-            <div className={`grid gap-6 ${homeSchedules.length === 1 ? "grid-cols-1 max-w-sm mx-auto" :
-                homeSchedules.length === 2 ? "sm:grid-cols-2 max-w-xl mx-auto" :
-                  homeSchedules.length === 3 ? "sm:grid-cols-2 lg:grid-cols-3" :
+            <div className={`grid gap-6 ${validSchedules.length === 1 ? "grid-cols-1 max-w-sm mx-auto" :
+                validSchedules.length === 2 ? "sm:grid-cols-2 max-w-xl mx-auto" :
+                  validSchedules.length === 3 ? "sm:grid-cols-2 lg:grid-cols-3" :
                     "sm:grid-cols-2 lg:grid-cols-4"
               }`}>
-              {homeSchedules.map((schedule, index) => (
+              {validSchedules.map((schedule, index) => (
                 <Card key={index} className="hover:shadow-lg transition-shadow">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
