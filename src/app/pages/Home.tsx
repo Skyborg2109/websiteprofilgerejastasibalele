@@ -23,19 +23,18 @@ export function Home() {
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="relative z-20 text-left text-white px-6 md:px-12 lg:px-24 max-w-5xl">
-          <h1 className="text-3xl md:text-5xl font-cinzel font-bold mb-4 tracking-tight leading-tight drop-shadow-2xl">
+          <h1 className="text-2xl md:text-4xl font-cinzel font-bold mb-4 tracking-tight leading-tight drop-shadow-2xl">
             {hero.churchName}
-            <span className="block text-xl md:text-2xl font-playfair font-light mt-2 text-blue-100 tracking-wide uppercase italic">{hero.subName}</span>
+            <span className="block text-lg md:text-xl font-playfair font-light mt-2 text-blue-100 tracking-wide uppercase italic">{hero.subName}</span>
           </h1>
 
           <div className="space-y-4 mb-8">
             <div className="w-16 h-1 bg-blue-500 rounded-full shadow-lg shadow-blue-500/50"></div>
-            <p className="text-xl md:text-2xl font-playfair font-medium text-white/95 drop-shadow-md">
+            <p className="text-lg md:text-xl font-playfair font-medium text-white/95 drop-shadow-md">
               {content.profile.parishName}
             </p>
-            <div className="flex flex-wrap items-center justify-start gap-x-4 gap-y-2 text-[10px] md:text-xs font-montserrat font-bold tracking-[0.2em] uppercase text-blue-300 antialiased">
+            <div className="flex flex-col items-start gap-2 text-[10px] md:text-xs font-montserrat font-bold tracking-[0.2em] uppercase text-blue-300 antialiased">
               <span className="px-3 py-1 bg-white/10 rounded-full backdrop-blur-sm border border-white/5">{content.profile.kevikepan}</span>
-              <span className="hidden md:block w-1.5 h-1.5 bg-blue-500 rounded-full shadow-[0_0_8px_rgba(59,130,246,0.8)]"></span>
               <span className="px-3 py-1 bg-white/10 rounded-full backdrop-blur-sm border border-white/5">{hero.diocese}</span>
             </div>
           </div>

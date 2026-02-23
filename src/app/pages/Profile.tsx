@@ -18,19 +18,18 @@ export function Profile() {
             <Church className="h-10 w-10 text-blue-200" />
           </div>
 
-          <h1 className="text-2xl md:text-4xl font-cinzel font-bold mb-3 tracking-tight leading-tight">
+          <h1 className="text-xl md:text-3xl font-cinzel font-bold mb-3 tracking-tight leading-tight">
             Stasi Santa Bernadeth
           </h1>
-          <p className="text-base md:text-lg font-playfair font-light text-blue-100 italic mb-10">Ba'lele Kondongan</p>
+          <p className="text-sm md:text-base font-playfair font-light text-blue-100 italic mb-10">Ba'lele Kondongan</p>
 
           <div className="space-y-4">
-            <div className="flex items-center justify-start gap-2 text-lg md:text-xl font-playfair font-medium text-white/95">
+            <div className="flex items-center justify-start gap-2 text-base md:text-lg font-playfair font-medium text-white/95">
               <MapPin className="h-5 w-5 text-blue-400" />
               <p>{profile.parishName}</p>
             </div>
-            <div className="flex flex-wrap items-center justify-start gap-3 text-[10px] md:text-xs font-montserrat font-bold tracking-[0.2em] uppercase text-blue-300">
+            <div className="flex flex-col items-start gap-3 text-[10px] md:text-xs font-montserrat font-bold tracking-[0.2em] uppercase text-blue-300">
               <span className="bg-white/10 px-3 py-1 rounded-full backdrop-blur-sm border border-white/5">{profile.kevikepan}</span>
-              <span className="hidden md:block w-1.5 h-1.5 bg-blue-500 rounded-full"></span>
               <span className="bg-white/10 px-3 py-1 rounded-full backdrop-blur-sm border border-white/5">{hero.diocese}</span>
             </div>
           </div>
