@@ -208,7 +208,7 @@ const defaultContent: SiteContent = {
   welcome: {
     title: "Selamat Datang",
     paragraph1: "Saudara-saudari terkasih dalam Kristus, selamat datang di website Stasi Santa Bernadeth Ba'lele Kondongan. Kami adalah komunitas umat Katolik di Toraja Utara yang bersatu dalam iman, harapan, dan kasih.",
-    paragraph2: "Sebagai bagian dari Keuskupan Agung Makassar, kami berkomitmen untuk memberikan pelayanan pastoral yang terbaik bagi umat melalui perayaan liturgi, kegiatan rohani, dan karya sosial kemasyarakatan.",
+    paragraph2: "Kami adalah bagian dari Paroki Santa Theresia Rantepao, dalam naungan Keuskupan Agung Makassar. Bersama seluruh umat paroki, kami berkomitmen memberikan pelayanan pastoral terbaik melalui perayaan liturgi, kegiatan rohani, dan karya sosial kemasyarakatan.",
     quote: "\"Marilah kita saling mengasihi, sebab kasih itu berasal dari Allah.\"",
     quoteRef: "- 1 Yohanes 4:7",
     pastorGreeting: "Tuhan memberkati,",
@@ -333,12 +333,12 @@ const defaultContent: SiteContent = {
   profile: {
     churchFullName: "Stasi Santa Bernadeth Ba'lele Kondongan",
     stasisSince: "1950",
-    parishName: "Paroki Santo Yohanes",
+    parishName: "Paroki Santa Theresia Rantepao",
   },
   history: {
     paragraph1: "Stasi Santa Bernadeth Ba'lele Kondongan merupakan bagian dari perkembangan Gereja Katolik di wilayah Toraja Utara, Sulawesi Selatan. Berawal dari sekelompok kecil umat yang berkumpul untuk beribadah bersama, komunitas ini terus bertumbuh menjadi stasi yang melayani umat Katolik di kawasan Ba'lele Kondongan.",
     paragraph2: "Nama Santa Bernadeth dipilih sebagai bentuk penghormatan kepada Santa Bernadette Soubirous, seorang santa yang menerima penampakan Bunda Maria di Lourdes. Nama ini menjadi inspirasi iman dan keteguhan hati dalam mengikuti Kristus.",
-    paragraph3: "Sebagai bagian dari Keuskupan Agung Makassar, Stasi Santa Bernadeth terus berkembang dalam pelayanan pastoral, kehidupan liturgi, dan karya sosial untuk membangun Kerajaan Allah di tengah masyarakat Toraja.",
+    paragraph3: "Sebagai bagian dari Paroki Santa Theresia Rantepao di bawah Keuskupan Agung Makassar, Stasi Santa Bernadeth terus berkembang dalam pelayanan pastoral, kehidupan liturgi, dan karya sosial untuk membangun Kerajaan Allah di tengah masyarakat Toraja.",
     imageUrl: "https://images.unsplash.com/photo-1621610212492-210f948fa466?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXRob2xpYyUyMGNodXJjaCUyMGJ1aWxkaW5nJTIwZXh0ZXJpb3J8ZW58MXx8fHwxNzcxNzY2NDEwfDA&ixlib=rb-4.1.0&q=80&w=1080",
     timeline: [
       { year: "1950", event: "Pembentukan komunitas umat Katolik pertama di wilayah ini" },
@@ -377,7 +377,7 @@ const defaultContent: SiteContent = {
     education: "Seminari Tinggi Santo Petrus",
     since: "Sejak 2018",
     quote: "Marilah kita bersama-sama membangun Gereja yang hidup, penuh kasih, dan menjadi terang bagi dunia. Tuhan memberkati kita semua.",
-    bio: "Pastor Paulus melayani dengan penuh dedikasi dan kasih pastoral kepada seluruh umat di Paroki Santa Theresia Rantepao, termasuk di Stasi Santa Bernadeth.",
+    bio: "Pastor Paulus melayani dengan penuh dedikasi dan kasih pastoral kepada seluruh umat di Paroki Santa Theresia Rantepao, termasuk Stasi Santa Bernadeth Ba'lele Kondongan yang merupakan bagian dari paroki ini.",
     imageUrl: "https://25thtahbisankams.wordpress.com/wp-content/uploads/2016/10/paulus-tongli.jpg?w=218&h=304",
   },
   wilayah: {

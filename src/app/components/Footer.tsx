@@ -4,7 +4,7 @@ import { useSiteContent } from "../context/SiteContentContext";
 
 export function Footer() {
   const { content } = useSiteContent();
-  const { footer, contact, navbar } = content;
+  const { footer, contact, navbar, profile } = content;
 
   return (
     <footer className="bg-gray-900 text-gray-300">
@@ -19,6 +19,7 @@ export function Footer() {
                 <p className="text-sm">{navbar.subName}</p>
               </div>
             </div>
+            <p className="text-xs text-blue-400 font-medium mb-2">{profile.parishName}</p>
             <p className="text-sm text-gray-400">{footer.description}</p>
           </div>
 

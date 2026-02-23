@@ -25,7 +25,8 @@ export function Home() {
         <div className="relative z-20 text-center text-white px-4 max-w-4xl">
           <h1 className="text-5xl md:text-6xl font-bold mb-4">{hero.churchName}</h1>
           <p className="text-xl md:text-2xl mb-2 font-light">{hero.subName}</p>
-          <p className="text-lg mb-2 opacity-90">{hero.diocese}</p>
+          <p className="text-lg mb-1 opacity-90">{hero.diocese}</p>
+          <p className="text-base mb-2 opacity-80">{content.profile.parishName}</p>
           <p className="text-lg md:text-xl mb-8 italic opacity-90">
             {hero.verse} <br />
             <span className="text-base">{hero.verseRef}</span>
@@ -97,9 +98,9 @@ export function Home() {
             </div>
 
             <div className={`grid gap-6 ${validSchedules.length === 1 ? "grid-cols-1 max-w-sm mx-auto" :
-                validSchedules.length === 2 ? "sm:grid-cols-2 max-w-xl mx-auto" :
-                  validSchedules.length === 3 ? "sm:grid-cols-2 lg:grid-cols-3" :
-                    "sm:grid-cols-2 lg:grid-cols-4"
+              validSchedules.length === 2 ? "sm:grid-cols-2 max-w-xl mx-auto" :
+                validSchedules.length === 3 ? "sm:grid-cols-2 lg:grid-cols-3" :
+                  "sm:grid-cols-2 lg:grid-cols-4"
               }`}>
               {validSchedules.map((schedule, index) => (
                 <Card key={index} className="hover:shadow-lg transition-shadow">

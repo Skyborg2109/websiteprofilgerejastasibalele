@@ -1,4 +1,4 @@
-import { Church, Target, Heart, Users2, User } from "lucide-react";
+import { Church, Target, Heart, Users2, User, MapPin } from "lucide-react";
 import { useSiteContent } from "../context/SiteContentContext";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
@@ -6,7 +6,7 @@ import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 
 export function Profile() {
   const { content } = useSiteContent();
-  const { history, visiMisi, structure, pastor, wilayah } = content;
+  const { history, visiMisi, structure, pastor, wilayah, profile } = content;
 
   return (
     <div>
@@ -16,7 +16,11 @@ export function Profile() {
           <Church className="h-16 w-16 mx-auto mb-4" />
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Profil Gereja</h1>
           <p className="text-xl opacity-90">Stasi Santa Bernadeth Ba'lele Kondongan</p>
-          <p className="text-lg opacity-80 mt-2">Keuskupan Agung Makassar</p>
+          <div className="flex items-center justify-center gap-2 mt-3 mb-1">
+            <MapPin className="h-4 w-4 opacity-80" />
+            <p className="text-base opacity-90 font-medium">{profile.parishName}</p>
+          </div>
+          <p className="text-sm opacity-70">Keuskupan Agung Makassar</p>
         </div>
       </section>
 
