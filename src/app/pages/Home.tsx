@@ -15,36 +15,36 @@ export function Home() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative h-[600px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/40 z-10" />
+      <section className="relative h-[600px] flex items-center justify-start overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent z-10" />
         <ImageWithFallback
           src={hero.imageUrl}
           alt={hero.churchName}
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="relative z-20 text-center text-white px-4 max-w-4xl">
-          <h1 className="text-6xl md:text-8xl font-cinzel font-bold mb-6 tracking-tight leading-tight drop-shadow-2xl">
+        <div className="relative z-20 text-left text-white px-6 md:px-12 lg:px-24 max-w-5xl">
+          <h1 className="text-4xl md:text-6xl font-cinzel font-bold mb-4 tracking-tight leading-tight drop-shadow-2xl">
             {hero.churchName}
-            <span className="block text-3xl md:text-4xl font-playfair font-light mt-4 text-blue-100 tracking-wide uppercase italic">{hero.subName}</span>
+            <span className="block text-2xl md:text-3xl font-playfair font-light mt-2 text-blue-100 tracking-wide uppercase italic">{hero.subName}</span>
           </h1>
 
-          <div className="space-y-4 mb-12">
-            <div className="w-20 h-1 bg-blue-500 mx-auto rounded-full shadow-lg shadow-blue-500/50"></div>
-            <p className="text-xl md:text-3xl font-playfair font-medium text-white/95 drop-shadow-md">
+          <div className="space-y-4 mb-8">
+            <div className="w-16 h-1 bg-blue-500 rounded-full shadow-lg shadow-blue-500/50"></div>
+            <p className="text-xl md:text-2xl font-playfair font-medium text-white/95 drop-shadow-md">
               {content.profile.parishName}
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs md:text-sm font-montserrat font-bold tracking-[0.2em] uppercase text-blue-300 antialiased">
+            <div className="flex flex-wrap items-center justify-start gap-x-4 gap-y-2 text-[10px] md:text-xs font-montserrat font-bold tracking-[0.2em] uppercase text-blue-300 antialiased">
               <span className="px-3 py-1 bg-white/10 rounded-full backdrop-blur-sm border border-white/5">{content.profile.kevikepan}</span>
               <span className="hidden md:block w-1.5 h-1.5 bg-blue-500 rounded-full shadow-[0_0_8px_rgba(59,130,246,0.8)]"></span>
               <span className="px-3 py-1 bg-white/10 rounded-full backdrop-blur-sm border border-white/5">{hero.diocese}</span>
             </div>
           </div>
 
-          <p className="text-xl md:text-2xl font-playfair mb-12 italic opacity-95 max-w-3xl mx-auto leading-relaxed border-l-4 border-blue-500/60 pl-8 py-4 bg-black/20 backdrop-blur-[2px] rounded-r-lg shadow-2xl">
+          <p className="text-lg md:text-xl font-playfair mb-10 italic opacity-95 max-w-2xl leading-relaxed border-l-4 border-blue-500/60 pl-6 py-3 bg-black/30 backdrop-blur-[2px] rounded-r-lg shadow-2xl">
             "{hero.verse}" <br />
-            <span className="text-base font-montserrat font-medium not-italic text-blue-300 mt-2 block tracking-wider uppercase tracking-[0.1em]">{hero.verseRef}</span>
+            <span className="text-sm font-montserrat font-medium not-italic text-blue-300 mt-2 block tracking-wider uppercase tracking-[0.1em]">{hero.verseRef}</span>
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className="flex flex-wrap gap-4 justify-start">
             <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700">
               <Link to="/jadwal">
                 <Calendar className="mr-2 h-5 w-5" />
