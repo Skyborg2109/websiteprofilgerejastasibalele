@@ -85,41 +85,48 @@ export function Home() {
         </div>
       </section>
 
-      {/* Quick Schedule */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">Jadwal Misa</h2>
-            <p className="text-gray-600">Jadwal ibadah reguler mingguan</p>
-          </div>
+      {/* Quick Schedule — hanya tampil jika ada data */}
+      {homeSchedules.length > 0 && (
+        <section className="py-16 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-2">Jadwal Misa</h2>
+              <p className="text-gray-600">Jadwal ibadah reguler mingguan</p>
+            </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {homeSchedules.map((schedule, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Clock className="h-5 w-5 text-blue-600" />
-                    {schedule.day}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-2xl font-bold text-blue-600 mb-1">{schedule.time}</p>
-                  <p className="text-gray-600">{schedule.type}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+            <div className={`grid gap-6 ${homeSchedules.length === 1 ? "grid-cols-1 max-w-sm mx-auto" :
+                homeSchedules.length === 2 ? "sm:grid-cols-2 max-w-xl mx-auto" :
+                  homeSchedules.length === 3 ? "sm:grid-cols-2 lg:grid-cols-3" :
+                    "sm:grid-cols-2 lg:grid-cols-4"
+              }`}>
+              {homeSchedules.map((schedule, index) => (
+                <Card key={index} className="hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Clock className="h-5 w-5 text-blue-600" />
+                      {schedule.day}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-2xl font-bold text-blue-600 mb-1">{schedule.time}</p>
+                    <p className="text-gray-600">{schedule.type}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
 
-          <div className="text-center mt-8">
-            <Button asChild variant="outline">
-              <Link to="/jadwal">
-                Lihat Jadwal Lengkap
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
+            <div className="text-center mt-8">
+              <Button asChild variant="outline">
+                <Link to="/jadwal">
+                  Lihat Jadwal Lengkap
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
+
 
       {/* Announcements */}
       <section className="py-16 bg-white">
