@@ -18,10 +18,10 @@ export function Profile() {
             <Church className="h-10 w-10 text-blue-200" />
           </div>
 
-          <h1 className="text-3xl md:text-5xl font-cinzel font-bold mb-3 tracking-tight leading-tight">
+          <h1 className="text-2xl md:text-4xl font-cinzel font-bold mb-3 tracking-tight leading-tight">
             Stasi Santa Bernadeth
           </h1>
-          <p className="text-lg md:text-xl font-playfair font-light text-blue-100 italic mb-10">Ba'lele Kondongan</p>
+          <p className="text-base md:text-lg font-playfair font-light text-blue-100 italic mb-10">Ba'lele Kondongan</p>
 
           <div className="space-y-4">
             <div className="flex items-center justify-start gap-2 text-lg md:text-xl font-playfair font-medium text-white/95">

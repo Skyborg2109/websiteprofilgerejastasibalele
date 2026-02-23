@@ -23,9 +23,9 @@ export function Home() {
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="relative z-20 text-left text-white px-6 md:px-12 lg:px-24 max-w-5xl">
-          <h1 className="text-4xl md:text-6xl font-cinzel font-bold mb-4 tracking-tight leading-tight drop-shadow-2xl">
+          <h1 className="text-3xl md:text-5xl font-cinzel font-bold mb-4 tracking-tight leading-tight drop-shadow-2xl">
             {hero.churchName}
-            <span className="block text-2xl md:text-3xl font-playfair font-light mt-2 text-blue-100 tracking-wide uppercase italic">{hero.subName}</span>
+            <span className="block text-xl md:text-2xl font-playfair font-light mt-2 text-blue-100 tracking-wide uppercase italic">{hero.subName}</span>
           </h1>
 
           <div className="space-y-4 mb-8">
