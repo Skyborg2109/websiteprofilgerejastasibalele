@@ -23,13 +23,24 @@ export function Home() {
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="relative z-20 text-center text-white px-4 max-w-4xl">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4">{hero.churchName}</h1>
-          <p className="text-xl md:text-2xl mb-2 font-light">{hero.subName}</p>
-          <p className="text-lg mb-1 opacity-90">{hero.diocese}</p>
-          <p className="text-base mb-2 opacity-80">{content.profile.parishName}</p>
-          <p className="text-lg md:text-xl mb-8 italic opacity-90">
-            {hero.verse} <br />
-            <span className="text-base">{hero.verseRef}</span>
+          <div className="space-y-2 mb-6">
+            <p className="text-blue-400 font-semibold tracking-widest uppercase text-sm md:text-base animate-fade-in">
+              {hero.diocese}
+            </p>
+            <div className="w-12 h-0.5 bg-blue-500 mx-auto"></div>
+            <p className="text-lg md:text-xl font-medium text-white/90 drop-shadow-md">
+              {content.profile.parishName}
+            </p>
+          </div>
+
+          <h1 className="text-5xl md:text-7xl font-bold mb-4 tracking-tight leading-tight drop-shadow-lg">
+            {hero.churchName}
+            <span className="block text-3xl md:text-4xl font-light mt-2 text-blue-100">{hero.subName}</span>
+          </h1>
+
+          <p className="text-lg md:text-xl mb-10 italic opacity-90 max-w-2xl mx-auto leading-relaxed border-l-2 border-blue-500/50 pl-6 py-2">
+            "{hero.verse}" <br />
+            <span className="text-sm font-medium not-italic text-blue-300">{hero.verseRef}</span>
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700">

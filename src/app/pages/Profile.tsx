@@ -11,16 +11,25 @@ export function Profile() {
   return (
     <div>
       {/* Header */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Church className="h-16 w-16 mx-auto mb-4" />
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Profil Gereja</h1>
-          <p className="text-xl opacity-90">Stasi Santa Bernadeth Ba'lele Kondongan</p>
-          <div className="flex items-center justify-center gap-2 mt-3 mb-1">
-            <MapPin className="h-4 w-4 opacity-80" />
-            <p className="text-base opacity-90 font-medium">{profile.parishName}</p>
+      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <div className="mb-6 inline-block p-4 bg-white/10 backdrop-blur-md rounded-full ring-1 ring-white/20">
+            <Church className="h-10 w-10 text-blue-200" />
           </div>
-          <p className="text-sm opacity-70">Keuskupan Agung Makassar</p>
+          <div className="space-y-1 mb-6">
+            <p className="text-blue-300 font-bold tracking-widest uppercase text-xs md:text-sm">
+              Keuskupan Agung Makassar
+            </p>
+            <div className="flex items-center justify-center gap-2">
+              <MapPin className="h-4 w-4 text-blue-400" />
+              <p className="text-lg md:text-xl font-medium text-white/90 whitespace-nowrap">{profile.parishName}</p>
+            </div>
+          </div>
+          <h1 className="text-4xl md:text-6xl font-bold mb-2 tracking-tight">
+            Stasi Santa Bernadeth
+          </h1>
+          <p className="text-xl md:text-2xl font-light text-blue-100 italic">Ba'lele Kondongan</p>
         </div>
       </section>
 
