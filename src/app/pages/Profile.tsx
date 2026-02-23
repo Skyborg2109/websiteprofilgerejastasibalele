@@ -18,20 +18,20 @@ export function Profile() {
             <Church className="h-10 w-10 text-blue-200" />
           </div>
 
-          <h1 className="text-4xl md:text-6xl font-bold mb-3 tracking-tight">
+          <h1 className="text-4xl md:text-6xl font-cinzel font-bold mb-3 tracking-tight">
             Stasi Santa Bernadeth
           </h1>
-          <p className="text-xl md:text-2xl font-light text-blue-100 italic mb-8">Ba'lele Kondongan</p>
+          <p className="text-xl md:text-2xl font-playfair font-light text-blue-100 italic mb-10">Ba'lele Kondongan</p>
 
-          <div className="space-y-2">
-            <div className="flex items-center justify-center gap-2 text-lg md:text-xl font-medium text-white/90">
-              <MapPin className="h-5 w-5 text-blue-400" />
+          <div className="space-y-3">
+            <div className="flex items-center justify-center gap-2 text-xl md:text-2xl font-playfair font-medium text-white/95">
+              <MapPin className="h-6 w-6 text-blue-400" />
               <p>{profile.parishName}</p>
             </div>
-            <div className="flex items-center justify-center gap-3 text-xs md:text-sm font-bold tracking-widest uppercase text-blue-300">
-              <span>{profile.kevikepan}</span>
-              <span className="w-1 h-1 bg-blue-500 rounded-full"></span>
-              <span>{hero.diocese}</span>
+            <div className="flex items-center justify-center gap-4 text-xs md:text-sm font-montserrat font-bold tracking-[0.2em] uppercase text-blue-300">
+              <span className="bg-white/10 px-3 py-1 rounded-full backdrop-blur-sm">{profile.kevikepan}</span>
+              <span className="w-1.5 h-1.5 bg-blue-500 rounded-full"></span>
+              <span className="bg-white/10 px-3 py-1 rounded-full backdrop-blur-sm">{hero.diocese}</span>
             </div>
           </div>
         </div>

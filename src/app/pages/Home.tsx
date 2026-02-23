@@ -23,26 +23,26 @@ export function Home() {
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="relative z-20 text-center text-white px-4 max-w-4xl">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight leading-tight drop-shadow-lg">
+          <h1 className="text-6xl md:text-8xl font-cinzel font-bold mb-6 tracking-tight leading-tight drop-shadow-2xl">
             {hero.churchName}
-            <span className="block text-3xl md:text-4xl font-light mt-2 text-blue-100">{hero.subName}</span>
+            <span className="block text-3xl md:text-4xl font-playfair font-light mt-4 text-blue-100 tracking-wide uppercase italic">{hero.subName}</span>
           </h1>
 
-          <div className="space-y-3 mb-10">
-            <div className="w-16 h-1 bg-blue-500 mx-auto rounded-full mb-4"></div>
-            <p className="text-xl md:text-2xl font-medium text-white/90">
+          <div className="space-y-4 mb-12">
+            <div className="w-20 h-1 bg-blue-500 mx-auto rounded-full shadow-lg shadow-blue-500/50"></div>
+            <p className="text-xl md:text-3xl font-playfair font-medium text-white/95 drop-shadow-md">
               {content.profile.parishName}
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm md:text-base font-semibold tracking-widest uppercase text-blue-300">
-              <span>{content.profile.kevikepan}</span>
-              <span className="hidden md:block w-1.5 h-1.5 bg-blue-500 rounded-full"></span>
-              <span>{hero.diocese}</span>
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs md:text-sm font-montserrat font-bold tracking-[0.2em] uppercase text-blue-300 antialiased">
+              <span className="px-3 py-1 bg-white/10 rounded-full backdrop-blur-sm border border-white/5">{content.profile.kevikepan}</span>
+              <span className="hidden md:block w-1.5 h-1.5 bg-blue-500 rounded-full shadow-[0_0_8px_rgba(59,130,246,0.8)]"></span>
+              <span className="px-3 py-1 bg-white/10 rounded-full backdrop-blur-sm border border-white/5">{hero.diocese}</span>
             </div>
           </div>
 
-          <p className="text-lg md:text-xl mb-10 italic opacity-90 max-w-2xl mx-auto leading-relaxed border-l-2 border-blue-500/50 pl-6 py-2">
+          <p className="text-xl md:text-2xl font-playfair mb-12 italic opacity-95 max-w-3xl mx-auto leading-relaxed border-l-4 border-blue-500/60 pl-8 py-4 bg-black/20 backdrop-blur-[2px] rounded-r-lg shadow-2xl">
             "{hero.verse}" <br />
-            <span className="text-sm font-medium not-italic text-blue-300">{hero.verseRef}</span>
+            <span className="text-base font-montserrat font-medium not-italic text-blue-300 mt-2 block tracking-wider uppercase tracking-[0.1em]">{hero.verseRef}</span>
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700">
