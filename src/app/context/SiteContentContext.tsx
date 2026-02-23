@@ -465,9 +465,15 @@ export function SiteContentProvider({ children }: { children: ReactNode }) {
 
   const [isLoading, setIsLoading] = useState(true);
 
-  // ── Fetch dari Supabase saat pertama load ───────────────────────────────────
+  // ── Fetch dari Supabase saat pertama load (atau fallback ke localStorage) ───
   useEffect(() => {
     const fetchFromSupabase = async () => {
+      // Jika Supabase tidak dikonfigurasi, gunakan localStorage saja
+      if (!supabase) {
+        setIsLoading(false);
+        return;
+      }
+
       try {
         const { data, error } = await supabase
           .from("site_content")
@@ -483,7 +489,6 @@ export function SiteContentProvider({ children }: { children: ReactNode }) {
         if (data?.data && Object.keys(data.data).length > 0) {
           const merged = mergeWithDefault(data.data as Partial<SiteContent>);
           setContent(merged);
-          // Update cache lokal agar load berikutnya lebih cepat
           localStorage.setItem(LOCAL_CACHE_KEY, JSON.stringify(merged));
         }
       } catch (err) {
@@ -496,8 +501,14 @@ export function SiteContentProvider({ children }: { children: ReactNode }) {
     fetchFromSupabase();
   }, []);
 
-  // ── Simpan ke Supabase saat content berubah (hanya jika sudah selesai loading) ─
+  // ── Simpan ke Supabase atau localStorage tergantung konfigurasi ─────────────
   const saveToSupabase = useCallback(async (newContent: SiteContent) => {
+    // Selalu update localStorage sebagai cache
+    localStorage.setItem(LOCAL_CACHE_KEY, JSON.stringify(newContent));
+
+    // Jika Supabase tidak dikonfigurasi, cukup localStorage
+    if (!supabase) return;
+
     try {
       const { error } = await supabase
         .from("site_content")
@@ -505,9 +516,6 @@ export function SiteContentProvider({ children }: { children: ReactNode }) {
 
       if (error) {
         console.error("[SiteContent] Gagal simpan ke Supabase:", error.message);
-      } else {
-        // Update cache lokal juga
-        localStorage.setItem(LOCAL_CACHE_KEY, JSON.stringify(newContent));
       }
     } catch (err) {
       console.error("[SiteContent] Error saat save:", err);
