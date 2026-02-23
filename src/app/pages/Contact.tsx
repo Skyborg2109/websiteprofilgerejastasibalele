@@ -137,18 +137,62 @@ export function Contact() {
       </section>
 
       {/* Map */}
-      <section className="bg-gray-100">
-        <div className="w-full h-96">
-          <iframe
-            src={contact.mapEmbedUrl || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3986.5938574449896!2d119.89088!3d-2.9858333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d93d3e7b7b7b7b7%3A0x1234567890abcdef!2s2VPR%2BH7C!5e0!3m2!1sid!2sid!4v1234567890"}
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            title="Lokasi Gereja"
-          ></iframe>
+      <section className="bg-white py-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section title */}
+          <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
+            <div className="flex items-center gap-2">
+              <MapPin className="h-6 w-6 text-teal-600" />
+              <h2 className="text-2xl font-bold text-gray-800">Lokasi Gereja</h2>
+            </div>
+            <a
+              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contact.address)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors shadow-sm"
+            >
+              <MapPin className="h-4 w-4" />
+              Buka di Google Maps
+            </a>
+          </div>
+
+          {/* Map card */}
+          <div className="relative rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+            {/* iframe peta */}
+            <div className="w-full h-[420px] md:h-[480px]">
+              <iframe
+                src={contact.mapEmbedUrl || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3986.5938574449896!2d119.89088!3d-2.9858333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d93d3e7b7b7b7b7%3A0x1234567890abcdef!2s2VPR%2BH7C!5e0!3m2!1sid!2sid!4v1234567890"}
+                width="100%"
+                height="100%"
+                style={{ border: 0, display: "block" }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Lokasi Stasi Santa Bernadeth Ba'lele Kondongan"
+              ></iframe>
+            </div>
+
+            {/* Overlay info alamat di pojok kiri bawah */}
+            <div className="absolute bottom-4 left-4 right-4 sm:right-auto sm:max-w-xs bg-white/95 backdrop-blur-sm rounded-xl shadow-lg p-4 border border-gray-100">
+              <div className="flex items-start gap-3">
+                <div className="p-2 bg-teal-50 rounded-lg flex-shrink-0">
+                  <MapPin className="h-5 w-5 text-teal-600" />
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-gray-800 mb-0.5">Stasi Santa Bernadeth</p>
+                  <p className="text-xs text-gray-600 leading-relaxed">{contact.address}</p>
+                  <a
+                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contact.address)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block mt-2 text-xs font-semibold text-teal-600 hover:text-teal-800 transition-colors"
+                  >
+                    Petunjuk Arah →
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
