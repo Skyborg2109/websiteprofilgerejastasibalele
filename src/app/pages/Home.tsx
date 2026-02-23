@@ -23,20 +23,22 @@ export function Home() {
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="relative z-20 text-center text-white px-4 max-w-4xl">
-          <div className="space-y-2 mb-6">
-            <p className="text-blue-400 font-semibold tracking-widest uppercase text-sm md:text-base animate-fade-in">
-              {hero.diocese}
-            </p>
-            <div className="w-12 h-0.5 bg-blue-500 mx-auto"></div>
-            <p className="text-lg md:text-xl font-medium text-white/90 drop-shadow-md">
-              {content.profile.parishName}
-            </p>
-          </div>
-
-          <h1 className="text-5xl md:text-7xl font-bold mb-4 tracking-tight leading-tight drop-shadow-lg">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight leading-tight drop-shadow-lg">
             {hero.churchName}
             <span className="block text-3xl md:text-4xl font-light mt-2 text-blue-100">{hero.subName}</span>
           </h1>
+
+          <div className="space-y-3 mb-10">
+            <div className="w-16 h-1 bg-blue-500 mx-auto rounded-full mb-4"></div>
+            <p className="text-xl md:text-2xl font-medium text-white/90">
+              {content.profile.parishName}
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm md:text-base font-semibold tracking-widest uppercase text-blue-300">
+              <span>{content.profile.kevikepan}</span>
+              <span className="hidden md:block w-1.5 h-1.5 bg-blue-500 rounded-full"></span>
+              <span>{hero.diocese}</span>
+            </div>
+          </div>
 
           <p className="text-lg md:text-xl mb-10 italic opacity-90 max-w-2xl mx-auto leading-relaxed border-l-2 border-blue-500/50 pl-6 py-2">
             "{hero.verse}" <br />

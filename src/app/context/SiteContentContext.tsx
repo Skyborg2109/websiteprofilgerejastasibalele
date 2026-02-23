@@ -107,6 +107,7 @@ export interface ProfileContent {
   churchFullName: string;
   stasisSince: string;
   parishName: string;
+  kevikepan: string;
 }
 
 export interface TimelineItem {
@@ -334,6 +335,7 @@ const defaultContent: SiteContent = {
     churchFullName: "Stasi Santa Bernadeth Ba'lele Kondongan",
     stasisSince: "1950",
     parishName: "Paroki Santa Theresia Rantepao",
+    kevikepan: "Kevikepan Toraja",
   },
   history: {
     paragraph1: "Stasi Santa Bernadeth Ba'lele Kondongan merupakan bagian dari perkembangan Gereja Katolik di wilayah Toraja Utara, Sulawesi Selatan. Berawal dari sekelompok kecil umat yang berkumpul untuk beribadah bersama, komunitas ini terus bertumbuh menjadi stasi yang melayani umat Katolik di kawasan Ba'lele Kondongan.",

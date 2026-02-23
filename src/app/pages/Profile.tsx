@@ -6,7 +6,7 @@ import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 
 export function Profile() {
   const { content } = useSiteContent();
-  const { history, visiMisi, structure, pastor, wilayah, profile } = content;
+  const { history, visiMisi, structure, pastor, wilayah, profile, hero } = content;
 
   return (
     <div>
@@ -14,22 +14,26 @@ export function Profile() {
       <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className="mb-6 inline-block p-4 bg-white/10 backdrop-blur-md rounded-full ring-1 ring-white/20">
+          <div className="mb-8 inline-block p-4 bg-white/10 backdrop-blur-md rounded-full ring-1 ring-white/20">
             <Church className="h-10 w-10 text-blue-200" />
           </div>
-          <div className="space-y-1 mb-6">
-            <p className="text-blue-300 font-bold tracking-widest uppercase text-xs md:text-sm">
-              Keuskupan Agung Makassar
-            </p>
-            <div className="flex items-center justify-center gap-2">
-              <MapPin className="h-4 w-4 text-blue-400" />
-              <p className="text-lg md:text-xl font-medium text-white/90 whitespace-nowrap">{profile.parishName}</p>
-            </div>
-          </div>
-          <h1 className="text-4xl md:text-6xl font-bold mb-2 tracking-tight">
+
+          <h1 className="text-4xl md:text-6xl font-bold mb-3 tracking-tight">
             Stasi Santa Bernadeth
           </h1>
-          <p className="text-xl md:text-2xl font-light text-blue-100 italic">Ba'lele Kondongan</p>
+          <p className="text-xl md:text-2xl font-light text-blue-100 italic mb-8">Ba'lele Kondongan</p>
+
+          <div className="space-y-2">
+            <div className="flex items-center justify-center gap-2 text-lg md:text-xl font-medium text-white/90">
+              <MapPin className="h-5 w-5 text-blue-400" />
+              <p>{profile.parishName}</p>
+            </div>
+            <div className="flex items-center justify-center gap-3 text-xs md:text-sm font-bold tracking-widest uppercase text-blue-300">
+              <span>{profile.kevikepan}</span>
+              <span className="w-1 h-1 bg-blue-500 rounded-full"></span>
+              <span>{hero.diocese}</span>
+            </div>
+          </div>
         </div>
       </section>
 
