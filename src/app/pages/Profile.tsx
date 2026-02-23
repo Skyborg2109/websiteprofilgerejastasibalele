@@ -28,7 +28,7 @@ export function Profile() {
               <TabsList className="flex w-max min-w-full h-auto">
                 <TabsTrigger value="sejarah" className="flex-1 min-w-[90px] py-2">Sejarah</TabsTrigger>
                 <TabsTrigger value="visi-misi" className="flex-1 min-w-[100px] py-2">Visi & Misi</TabsTrigger>
-                <TabsTrigger value="struktur" className="flex-1 min-w-[90px] py-2">Struktur</TabsTrigger>
+                <TabsTrigger value="kepengurusan" className="flex-1 min-w-[90px] py-2">Kepengurusan</TabsTrigger>
                 <TabsTrigger value="pastor" className="flex-1 min-w-[80px] py-2">Pastor</TabsTrigger>
                 <TabsTrigger value="wilayah" className="flex-1 min-w-[80px] py-2">Wilayah</TabsTrigger>
               </TabsList>
@@ -124,7 +124,7 @@ export function Profile() {
             </TabsContent>
 
             {/* Struktur */}
-            <TabsContent value="struktur" className="space-y-6">
+            <TabsContent value="kepengurusan" className="space-y-6">
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-2xl">
