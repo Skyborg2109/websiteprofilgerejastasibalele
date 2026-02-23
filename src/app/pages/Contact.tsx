@@ -171,27 +171,6 @@ export function Contact() {
                 title="Lokasi Stasi Santa Bernadeth Ba'lele Kondongan"
               ></iframe>
             </div>
-
-            {/* Overlay info alamat di pojok kiri bawah */}
-            <div className="absolute bottom-4 left-4 right-4 sm:right-auto sm:max-w-xs bg-white/95 backdrop-blur-sm rounded-xl shadow-lg p-4 border border-gray-100">
-              <div className="flex items-start gap-3">
-                <div className="p-2 bg-teal-50 rounded-lg flex-shrink-0">
-                  <MapPin className="h-5 w-5 text-teal-600" />
-                </div>
-                <div>
-                  <p className="text-sm font-bold text-gray-800 mb-0.5">Stasi Santa Bernadeth</p>
-                  <p className="text-xs text-gray-600 leading-relaxed">{contact.address}</p>
-                  <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contact.address)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block mt-2 text-xs font-semibold text-teal-600 hover:text-teal-800 transition-colors"
-                  >
-                    Petunjuk Arah →
-                  </a>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>

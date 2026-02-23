@@ -1,4 +1,7 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode, useCallback } from "react";
+import { supabase } from "../lib/supabase";
+
+const SUPABASE_ROW_ID = "main";
 
 // =========================================
 // TYPE DEFINITIONS
@@ -402,56 +405,56 @@ interface SiteContentContextType {
   resetSection: (section: keyof SiteContent) => void;
   resetAll: () => void;
   isAdmin: boolean;
+  isLoading: boolean;
   login: (password: string) => boolean;
   logout: () => void;
 }
 
 const SiteContentContext = createContext<SiteContentContextType | undefined>(undefined);
 
-const STORAGE_KEY = "stasi_site_content";
+const LOCAL_CACHE_KEY = "stasi_site_content_cache";
 const AUTH_KEY = "stasi_admin_auth";
-const ADMIN_PASSWORD = "admin123"; // In production, use proper auth
+const ADMIN_PASSWORD = "admin123";
+
+/** Merge data dari Supabase/cache dengan defaultContent agar field baru tidak hilang */
+function mergeWithDefault(parsed: Partial<SiteContent>): SiteContent {
+  return {
+    ...defaultContent,
+    ...parsed,
+    hero: { ...defaultContent.hero, ...(parsed.hero ?? {}) },
+    welcome: { ...defaultContent.welcome, ...(parsed.welcome ?? {}) },
+    contact: { ...defaultContent.contact, ...(parsed.contact ?? {}) },
+    profile: { ...defaultContent.profile, ...(parsed.profile ?? {}) },
+    footer: { ...defaultContent.footer, ...(parsed.footer ?? {}) },
+    navbar: { ...defaultContent.navbar, ...(parsed.navbar ?? {}) },
+    pastor: { ...defaultContent.pastor, ...(parsed.pastor ?? {}) },
+    announcements: parsed.announcements ?? defaultContent.announcements,
+    homeSchedules: parsed.homeSchedules ?? defaultContent.homeSchedules,
+    weeklyMass: parsed.weeklyMass ?? defaultContent.weeklyMass,
+    holyDays: parsed.holyDays ?? defaultContent.holyDays,
+    sacraments: parsed.sacraments ?? defaultContent.sacraments,
+    devotions: parsed.devotions ?? defaultContent.devotions,
+    news: parsed.news ?? defaultContent.news,
+    organizations: parsed.organizations ?? defaultContent.organizations,
+    structure: parsed.structure ?? defaultContent.structure,
+    history: parsed.history
+      ? { ...defaultContent.history, ...parsed.history, timeline: parsed.history.timeline ?? defaultContent.history.timeline }
+      : defaultContent.history,
+    visiMisi: parsed.visiMisi
+      ? { ...defaultContent.visiMisi, ...parsed.visiMisi, misi: parsed.visiMisi.misi ?? defaultContent.visiMisi.misi }
+      : defaultContent.visiMisi,
+    wilayah: parsed.wilayah
+      ? { ...defaultContent.wilayah, ...parsed.wilayah, items: parsed.wilayah.items ?? defaultContent.wilayah.items }
+      : defaultContent.wilayah,
+  };
+}
 
 export function SiteContentProvider({ children }: { children: ReactNode }) {
+  // Gunakan cache lokal sebagai nilai awal (agar tidak blank saat loading)
   const [content, setContent] = useState<SiteContent>(() => {
     try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        // Deep merge: top-level keys dari parsed menimpa default,
-        // tapi pastikan setiap array/object section tidak hilang jika field baru ditambahkan
-        return {
-          ...defaultContent,
-          ...parsed,
-          // Pastikan setiap section object ter-merge dengan benar (bukan sekadar ditimpa)
-          hero: { ...defaultContent.hero, ...(parsed.hero ?? {}) },
-          welcome: { ...defaultContent.welcome, ...(parsed.welcome ?? {}) },
-          contact: { ...defaultContent.contact, ...(parsed.contact ?? {}) },
-          profile: { ...defaultContent.profile, ...(parsed.profile ?? {}) },
-          footer: { ...defaultContent.footer, ...(parsed.footer ?? {}) },
-          navbar: { ...defaultContent.navbar, ...(parsed.navbar ?? {}) },
-          // Array sections: gunakan dari parsed jika ada, fallback ke default
-          announcements: parsed.announcements ?? defaultContent.announcements,
-          homeSchedules: parsed.homeSchedules ?? defaultContent.homeSchedules,
-          weeklyMass: parsed.weeklyMass ?? defaultContent.weeklyMass,
-          holyDays: parsed.holyDays ?? defaultContent.holyDays,
-          sacraments: parsed.sacraments ?? defaultContent.sacraments,
-          devotions: parsed.devotions ?? defaultContent.devotions,
-          news: parsed.news ?? defaultContent.news,
-          organizations: parsed.organizations ?? defaultContent.organizations,
-          structure: parsed.structure ?? defaultContent.structure,
-          pastor: { ...defaultContent.pastor, ...(parsed.pastor ?? {}) },
-          history: parsed.history
-            ? { ...defaultContent.history, ...parsed.history, timeline: parsed.history.timeline ?? defaultContent.history.timeline }
-            : defaultContent.history,
-          visiMisi: parsed.visiMisi
-            ? { ...defaultContent.visiMisi, ...parsed.visiMisi, misi: parsed.visiMisi.misi ?? defaultContent.visiMisi.misi }
-            : defaultContent.visiMisi,
-          wilayah: parsed.wilayah
-            ? { ...defaultContent.wilayah, ...parsed.wilayah, items: parsed.wilayah.items ?? defaultContent.wilayah.items }
-            : defaultContent.wilayah,
-        };
-      }
+      const cached = localStorage.getItem(LOCAL_CACHE_KEY);
+      if (cached) return mergeWithDefault(JSON.parse(cached));
     } catch { }
     return defaultContent;
   });
@@ -460,21 +463,77 @@ export function SiteContentProvider({ children }: { children: ReactNode }) {
     return localStorage.getItem(AUTH_KEY) === "true";
   });
 
+  const [isLoading, setIsLoading] = useState(true);
+
+  // ── Fetch dari Supabase saat pertama load ───────────────────────────────────
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(content));
-  }, [content]);
+    const fetchFromSupabase = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("site_content")
+          .select("data")
+          .eq("id", SUPABASE_ROW_ID)
+          .single();
 
-  const updateContent = (section: keyof SiteContent, data: SiteContent[keyof SiteContent]) => {
-    setContent((prev) => ({ ...prev, [section]: data }));
-  };
+        if (error) {
+          console.warn("[SiteContent] Supabase fetch error, pakai cache lokal:", error.message);
+          return;
+        }
 
-  const resetSection = (section: keyof SiteContent) => {
-    setContent((prev) => ({ ...prev, [section]: defaultContent[section] }));
-  };
+        if (data?.data && Object.keys(data.data).length > 0) {
+          const merged = mergeWithDefault(data.data as Partial<SiteContent>);
+          setContent(merged);
+          // Update cache lokal agar load berikutnya lebih cepat
+          localStorage.setItem(LOCAL_CACHE_KEY, JSON.stringify(merged));
+        }
+      } catch (err) {
+        console.warn("[SiteContent] Gagal connect ke Supabase:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  const resetAll = () => {
+    fetchFromSupabase();
+  }, []);
+
+  // ── Simpan ke Supabase saat content berubah (hanya jika sudah selesai loading) ─
+  const saveToSupabase = useCallback(async (newContent: SiteContent) => {
+    try {
+      const { error } = await supabase
+        .from("site_content")
+        .upsert({ id: SUPABASE_ROW_ID, data: newContent, updated_at: new Date().toISOString() });
+
+      if (error) {
+        console.error("[SiteContent] Gagal simpan ke Supabase:", error.message);
+      } else {
+        // Update cache lokal juga
+        localStorage.setItem(LOCAL_CACHE_KEY, JSON.stringify(newContent));
+      }
+    } catch (err) {
+      console.error("[SiteContent] Error saat save:", err);
+    }
+  }, []);
+
+  const updateContent = useCallback((section: keyof SiteContent, data: SiteContent[keyof SiteContent]) => {
+    setContent((prev) => {
+      const next = { ...prev, [section]: data };
+      saveToSupabase(next);
+      return next;
+    });
+  }, [saveToSupabase]);
+
+  const resetSection = useCallback((section: keyof SiteContent) => {
+    setContent((prev) => {
+      const next = { ...prev, [section]: defaultContent[section] };
+      saveToSupabase(next);
+      return next;
+    });
+  }, [saveToSupabase]);
+
+  const resetAll = useCallback(() => {
     setContent(defaultContent);
-  };
+    saveToSupabase(defaultContent);
+  }, [saveToSupabase]);
 
   const login = (password: string): boolean => {
     if (password === ADMIN_PASSWORD) {
@@ -491,7 +550,7 @@ export function SiteContentProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <SiteContentContext.Provider value={{ content, updateContent, resetSection, resetAll, isAdmin, login, logout }}>
+    <SiteContentContext.Provider value={{ content, updateContent, resetSection, resetAll, isAdmin, isLoading, login, logout }}>
       {children}
     </SiteContentContext.Provider>
   );

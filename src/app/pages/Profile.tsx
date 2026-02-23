@@ -24,13 +24,15 @@ export function Profile() {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Tabs defaultValue="sejarah" className="w-full">
-            <TabsList className="flex w-full overflow-x-auto mb-8 h-auto flex-nowrap">
-              <TabsTrigger value="sejarah" className="flex-shrink-0 flex-1 min-w-[100px]">Sejarah</TabsTrigger>
-              <TabsTrigger value="visi-misi" className="flex-shrink-0 flex-1 min-w-[100px]">Visi & Misi</TabsTrigger>
-              <TabsTrigger value="struktur" className="flex-shrink-0 flex-1 min-w-[100px]">Struktur</TabsTrigger>
-              <TabsTrigger value="pastor" className="flex-shrink-0 flex-1 min-w-[100px]">Pastor</TabsTrigger>
-              <TabsTrigger value="wilayah" className="flex-shrink-0 flex-1 min-w-[100px]">Wilayah</TabsTrigger>
-            </TabsList>
+            <div className="overflow-x-auto mb-8 -mx-4 px-4">
+              <TabsList className="flex w-max min-w-full h-auto">
+                <TabsTrigger value="sejarah" className="flex-1 min-w-[90px] py-2">Sejarah</TabsTrigger>
+                <TabsTrigger value="visi-misi" className="flex-1 min-w-[100px] py-2">Visi & Misi</TabsTrigger>
+                <TabsTrigger value="struktur" className="flex-1 min-w-[90px] py-2">Struktur</TabsTrigger>
+                <TabsTrigger value="pastor" className="flex-1 min-w-[80px] py-2">Pastor</TabsTrigger>
+                <TabsTrigger value="wilayah" className="flex-1 min-w-[80px] py-2">Wilayah</TabsTrigger>
+              </TabsList>
+            </div>
 
             {/* Sejarah */}
             <TabsContent value="sejarah" className="space-y-8">

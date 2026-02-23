@@ -172,10 +172,12 @@ export function News() {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Tabs defaultValue="berita" className="w-full">
-            <TabsList className="flex w-full overflow-x-auto mb-8 h-auto flex-nowrap">
-              <TabsTrigger value="berita" className="flex-shrink-0 flex-1 min-w-[100px]">Berita</TabsTrigger>
-              <TabsTrigger value="galeri" className="flex-shrink-0 flex-1 min-w-[100px]">Galeri Foto</TabsTrigger>
-            </TabsList>
+            <div className="overflow-x-auto mb-8 -mx-4 px-4">
+              <TabsList className="flex w-max min-w-full h-auto">
+                <TabsTrigger value="berita" className="flex-1 min-w-[90px] py-2">Berita</TabsTrigger>
+                <TabsTrigger value="galeri" className="flex-1 min-w-[100px] py-2">Galeri Foto</TabsTrigger>
+              </TabsList>
+            </div>
 
             {/* ── Berita ── */}
             <TabsContent value="berita">
