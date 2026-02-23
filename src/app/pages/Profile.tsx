@@ -24,12 +24,12 @@ export function Profile() {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Tabs defaultValue="sejarah" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 mb-8">
-              <TabsTrigger value="sejarah">Sejarah</TabsTrigger>
-              <TabsTrigger value="visi-misi">Visi & Misi</TabsTrigger>
-              <TabsTrigger value="struktur">Struktur</TabsTrigger>
-              <TabsTrigger value="pastor">Pastor</TabsTrigger>
-              <TabsTrigger value="wilayah">Wilayah</TabsTrigger>
+            <TabsList className="flex w-full overflow-x-auto mb-8 h-auto flex-nowrap">
+              <TabsTrigger value="sejarah" className="flex-shrink-0 flex-1 min-w-[100px]">Sejarah</TabsTrigger>
+              <TabsTrigger value="visi-misi" className="flex-shrink-0 flex-1 min-w-[100px]">Visi & Misi</TabsTrigger>
+              <TabsTrigger value="struktur" className="flex-shrink-0 flex-1 min-w-[100px]">Struktur</TabsTrigger>
+              <TabsTrigger value="pastor" className="flex-shrink-0 flex-1 min-w-[100px]">Pastor</TabsTrigger>
+              <TabsTrigger value="wilayah" className="flex-shrink-0 flex-1 min-w-[100px]">Wilayah</TabsTrigger>
             </TabsList>
 
             {/* Sejarah */}

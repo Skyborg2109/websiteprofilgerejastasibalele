@@ -172,9 +172,9 @@ export function News() {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Tabs defaultValue="berita" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 mb-8">
-              <TabsTrigger value="berita">Berita</TabsTrigger>
-              <TabsTrigger value="galeri">Galeri Foto</TabsTrigger>
+            <TabsList className="flex w-full overflow-x-auto mb-8 h-auto flex-nowrap">
+              <TabsTrigger value="berita" className="flex-shrink-0 flex-1 min-w-[100px]">Berita</TabsTrigger>
+              <TabsTrigger value="galeri" className="flex-shrink-0 flex-1 min-w-[100px]">Galeri Foto</TabsTrigger>
             </TabsList>
 
             {/* ── Berita ── */}
@@ -186,8 +186,8 @@ export function News() {
                     key={category.value}
                     onClick={() => setSelectedCategory(category.value)}
                     className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${selectedCategory === category.value
-                        ? "bg-green-600 text-white"
-                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      ? "bg-green-600 text-white"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                       }`}
                   >
                     {category.label}

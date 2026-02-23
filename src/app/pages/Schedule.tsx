@@ -41,11 +41,11 @@ export function Schedule() {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Tabs defaultValue="misa" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 mb-8">
-              <TabsTrigger value="misa">Jadwal Misa</TabsTrigger>
-              <TabsTrigger value="hariraya">Hari Raya</TabsTrigger>
-              <TabsTrigger value="sakramen">Sakramen</TabsTrigger>
-              <TabsTrigger value="doa">Doa & Devosi</TabsTrigger>
+            <TabsList className="flex w-full overflow-x-auto mb-8 h-auto flex-nowrap">
+              <TabsTrigger value="misa" className="flex-shrink-0 flex-1 min-w-[110px]">Jadwal Misa</TabsTrigger>
+              <TabsTrigger value="hariraya" className="flex-shrink-0 flex-1 min-w-[100px]">Hari Raya</TabsTrigger>
+              <TabsTrigger value="sakramen" className="flex-shrink-0 flex-1 min-w-[100px]">Sakramen</TabsTrigger>
+              <TabsTrigger value="doa" className="flex-shrink-0 flex-1 min-w-[110px]">Doa & Devosi</TabsTrigger>
             </TabsList>
 
             {/* Jadwal Misa Mingguan */}
