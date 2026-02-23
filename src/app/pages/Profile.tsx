@@ -123,7 +123,7 @@ export function Profile() {
               </Card>
             </TabsContent>
 
-            {/* Struktur */}
+            {/* Kepengurusan */}
             <TabsContent value="kepengurusan" className="space-y-6">
               <Card>
                 <CardHeader>
@@ -133,20 +133,37 @@ export function Profile() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    {structure.map((person, index) => (
-                      <div
-                        key={index}
-                        className="p-4 border rounded-lg hover:shadow-md transition-shadow"
-                      >
-                        <div className="font-medium text-gray-900">{person.position}</div>
-                        <div className="text-lg font-bold text-blue-600">{person.name}</div>
-                      </div>
-                    ))}
-                    {structure.length === 0 && (
-                      <p className="text-gray-400 text-sm col-span-2 text-center py-8">Belum ada data struktur.</p>
-                    )}
-                  </div>
+                  {structure.length === 0 ? (
+                    <p className="text-gray-400 text-sm text-center py-10">Belum ada data struktur kepengurusan.</p>
+                  ) : (
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+                      {structure.map((person, index) => (
+                        <div key={index} className="flex flex-col items-center text-center group">
+                          {/* Foto */}
+                          <div className="w-24 h-24 rounded-full overflow-hidden bg-gray-100 border-4 border-white shadow-md mb-3 flex-shrink-0 group-hover:border-blue-200 transition-colors">
+                            {person.imageUrl ? (
+                              <img
+                                src={person.imageUrl}
+                                alt={person.name}
+                                className="w-full h-full object-cover object-top"
+                                onError={(e) => {
+                                  (e.target as HTMLImageElement).src = "";
+                                  (e.target as HTMLImageElement).style.display = "none";
+                                }}
+                              />
+                            ) : (
+                              <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-200">
+                                <User className="h-10 w-10 text-blue-400" />
+                              </div>
+                            )}
+                          </div>
+                          {/* Info */}
+                          <p className="text-xs font-semibold text-blue-600 uppercase tracking-wide mb-0.5 leading-tight">{person.position}</p>
+                          <p className="text-sm font-medium text-gray-900 leading-snug">{person.name}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             </TabsContent>

@@ -130,6 +130,7 @@ export interface VisiMisi {
 export interface StructureMember {
   position: string;
   name: string;
+  imageUrl?: string;
 }
 
 export interface PastorInfo {

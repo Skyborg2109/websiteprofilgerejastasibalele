@@ -10,7 +10,7 @@ import {
 import { ImageInput } from "../../components/admin/ImageInput";
 import { alertSukses, alertKonfirmasiSimpan, alertKonfirmasiReset, alertKonfirmasiHapus } from "../../utils/showAlert";
 
-type Tab = "dasar" | "sejarah" | "visi" | "struktur" | "pastor" | "wilayah";
+type Tab = "dasar" | "sejarah" | "visi" | "kepengurusan" | "pastor" | "wilayah";
 
 export function AdminProfil() {
     const { content, updateContent, resetSection } = useSiteContent();
@@ -172,7 +172,7 @@ export function AdminProfil() {
         { id: "dasar", label: "Info Dasar", icon: Church },
         { id: "sejarah", label: "Sejarah", icon: BookOpen },
         { id: "visi", label: "Visi & Misi", icon: Target },
-        { id: "struktur", label: "Struktur", icon: Users2 },
+        { id: "kepengurusan", label: "Kepengurusan", icon: Users2 },
         { id: "pastor", label: "Pastor", icon: User },
         { id: "wilayah", label: "Wilayah", icon: MapPin },
     ];
@@ -353,7 +353,7 @@ export function AdminProfil() {
             )}
 
             {/* ── Tab: Struktur ── */}
-            {activeTab === "struktur" && (
+            {activeTab === "kepengurusan" && (
                 <div className="space-y-4">
                     <div className="flex items-center justify-between flex-wrap gap-3">
                         <p className="text-slate-400 text-sm">Kelola struktur kepengurusan stasi</p>
@@ -369,28 +369,52 @@ export function AdminProfil() {
                             </button>
                         </div>
                     </div>
-                    <div className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-4 space-y-3">
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         {structure.map((item, idx) => (
-                            <div key={idx} className="bg-slate-900/60 border border-slate-700 rounded-xl p-3">
-                                <div className="grid sm:grid-cols-2 gap-3 items-end">
-                                    <div>
-                                        <label className="block text-slate-400 text-xs mb-1.5">Jabatan</label>
-                                        <input type="text" value={item.position} onChange={(e) => updateStructure(idx, "position", e.target.value)} placeholder="mis. Ketua Stasi" className={smallInputCls} />
-                                    </div>
-                                    <div className="flex gap-2 items-end">
-                                        <div className="flex-1">
-                                            <label className="block text-slate-400 text-xs mb-1.5">Nama</label>
-                                            <input type="text" value={item.name} onChange={(e) => updateStructure(idx, "name", e.target.value)} placeholder="mis. Bapak Thomas" className={smallInputCls} />
-                                        </div>
-                                        <button onClick={() => removeStructure(idx, item)} className="p-2 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-colors flex-shrink-0">
-                                            <Trash2 className="w-4 h-4" />
-                                        </button>
-                                    </div>
+                            <div key={idx} className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-4 space-y-3">
+                                {/* Foto */}
+                                <ImageInput
+                                    label="Foto"
+                                    value={item.imageUrl ?? ""}
+                                    onChange={(url) => updateStructure(idx, "imageUrl", url)}
+                                    previewHeight="h-36"
+                                    hint="Foto anggota (opsional)"
+                                />
+                                {/* Jabatan */}
+                                <div>
+                                    <label className="block text-slate-400 text-xs mb-1.5">Jabatan</label>
+                                    <input
+                                        type="text"
+                                        value={item.position}
+                                        onChange={(e) => updateStructure(idx, "position", e.target.value)}
+                                        placeholder="mis. Ketua Stasi"
+                                        className={smallInputCls}
+                                    />
                                 </div>
+                                {/* Nama */}
+                                <div>
+                                    <label className="block text-slate-400 text-xs mb-1.5">Nama</label>
+                                    <input
+                                        type="text"
+                                        value={item.name}
+                                        onChange={(e) => updateStructure(idx, "name", e.target.value)}
+                                        placeholder="mis. Bapak Thomas"
+                                        className={smallInputCls}
+                                    />
+                                </div>
+                                {/* Hapus */}
+                                <button
+                                    onClick={() => removeStructure(idx, item)}
+                                    className="w-full flex items-center justify-center gap-1.5 py-2 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-colors text-sm"
+                                >
+                                    <Trash2 className="w-3.5 h-3.5" /> Hapus
+                                </button>
                             </div>
                         ))}
                         {structure.length === 0 && (
-                            <p className="text-center text-slate-500 text-sm py-8">Belum ada anggota. Klik "Tambah" untuk menambahkan.</p>
+                            <div className="sm:col-span-2 lg:col-span-3 text-center text-slate-500 text-sm py-12 bg-slate-800/30 border border-slate-700/50 rounded-2xl">
+                                Belum ada anggota. Klik "Tambah" untuk menambahkan.
+                            </div>
                         )}
                     </div>
                 </div>
